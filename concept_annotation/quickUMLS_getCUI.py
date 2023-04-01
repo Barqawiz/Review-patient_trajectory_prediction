@@ -5,10 +5,11 @@ import dill
 import argparse
 
 data_folder = '~/dl4hl/data/'
+umls_folder = '~/dl4hl/'
 
 # Global variables
 # QuickUMLS object
-matcher = QuickUMLS(quickumls_fp=f'{data_folder}/QuickUMLS', overlapping_criteria='score', threshold=0.7, similarity_name='cosine', window=5)
+matcher = QuickUMLS(quickumls_fp=f'{umls_folder}/QuickUMLS', overlapping_criteria='score', threshold=0.7, similarity_name='cosine', window=5)
 TUIs = TUI_alpha
 ARGS = None
 # TUI list
