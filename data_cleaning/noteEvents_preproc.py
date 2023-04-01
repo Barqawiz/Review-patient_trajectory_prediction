@@ -406,9 +406,9 @@ def main():
         print("One argument is necessary : the path to the NOTEEVENTS.csv file")
         return -1
     # New folder in which we will save the output
-    # outpath = "out_results/"
-    # os.mkdir(outpath)
-    outpath = ""
+    outpath = "~/dl4hl/data/out_results/"
+    os.mkdir(outpath)
+    # outpath = ""
     # Run preprocessing over the input
     anonimization_remover(sys.argv[1], outpath+'out_noanonim.csv')
     doctor_quotes_remover(outpath+'out_noanonim.csv', outpath+'out_nodocquotes.csv')
