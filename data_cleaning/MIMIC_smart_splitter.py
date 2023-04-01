@@ -4,7 +4,7 @@ import os, sys
 
 def splitDocument(sizeInMo):
     """Split the MIMIC III document for every 50 Mo (about) without cutting a note"""
-    dirchunks = "./data/chunkssmall/"
+    dirchunks = "~/dl4hl/data/data/chunkssmall/"
     if not os.path.exists('data'):
         os.makedirs('data')
     if not os.path.exists('data/chunkssmall'):
