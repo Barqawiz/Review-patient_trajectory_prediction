@@ -5,7 +5,7 @@ import dill
 import argparse
 
 data_folder = '~/dl4hl/data/'
-umls_folder = '~/dl4hl/'
+umls_folder = '~/dl4hl/data/'
 
 # Global variables
 # QuickUMLS object
