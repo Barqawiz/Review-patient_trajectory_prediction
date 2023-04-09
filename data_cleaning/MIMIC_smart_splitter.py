@@ -21,15 +21,15 @@ def splitDocument(sizeInMo):
         for line in fread.readlines():
             count_comma = line.count(',')
             count_quote = line.count('"')
-            print('count_comma: ', count_comma)
-            print('count_quote: ', count_quote)
+            # print('count_comma: ', count_comma)
+            # print('count_quote: ', count_quote)
             if count_comma >= 10 and count_quote >= 1:
                 if make_new_file :
                     make_new_file = False
                     outputFile = dirchunks+str(i)+".csv"
             else:
                 continue
-            print('outputFile: ', outputFile)
+            # print('outputFile: ', outputFile)
             with open(outputFile, 'a') as fwrite:
                 fwrite.write(line)
             if os.path.getsize(outputFile) > sizeInMo*1000000 and make_new_file is False:
