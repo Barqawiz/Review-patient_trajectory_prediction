@@ -4,8 +4,8 @@ from multiprocessing import Pool
 import dill
 import argparse
 
-data_folder = '~/dl4hl/data/'
-umls_folder = '~/dl4hl/data/'
+data_folder = '~/dl4hl/data'
+umls_folder = '~/dl4hl/data'
 
 # Global variables
 # QuickUMLS object
