@@ -298,6 +298,7 @@ def spaces_remover(inputfile, outputfile):
     1) It removes all spaces that are starting a paragraph (a line)
     2) It replaces every "more than 1 space in a row" by 1 space
     """
+    print('outputfile path: ', outputfile)
     processed_file = open(outputfile, 'w')
     with open(inputfile) as fp:
         while True:
@@ -310,6 +311,7 @@ def spaces_remover(inputfile, outputfile):
             cleaned_line = re.sub(r' +', ' ', cleaned_line)
             processed_file.write(cleaned_line)
     processed_file.close()
+    print('finished processing output file')
 
 
 def doctor_quotes_remover(inputfile, outputfile):
