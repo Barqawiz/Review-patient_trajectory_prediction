@@ -408,7 +408,7 @@ def main():
         print("One argument is necessary : the path to the NOTEEVENTS.csv file")
         return -1
     # New folder in which we will save the output
-    outpath = "~/dl4hl/data/out_results/"
+    outpath = os.path.expanduser("~/dl4hl/data/out_results/")
     os.mkdir(outpath)
     # outpath = ""
     # Run preprocessing over the input
