@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import os, sys
 
-
+max_file_size = 10000
 def splitDocument(sizeInMo):
     """Split the MIMIC III document for every 50 Mo (about) without cutting a note"""
     root = os.path.expanduser("~/dl4hl/data/data/")
@@ -18,7 +18,7 @@ def splitDocument(sizeInMo):
     print('output_file_path: ', output_file_path)
     with open(output_file_path) as fread:
         fread.readline() # avoid first line
-        for line in fread.readlines():
+        for index, line in enumerate(fread.readlines()):
             count_comma = line.count(',')
             count_quote = line.count('"')
             # print('count_comma: ', count_comma)
@@ -29,10 +29,11 @@ def splitDocument(sizeInMo):
                     outputFile = dirchunks+str(i)+".csv"
             else:
                 continue
-            # print('outputFile: ', outputFile)
+            if index % 100:
+                print('outputFile: ', outputFile)
             with open(outputFile, 'a') as fwrite:
                 fwrite.write(line)
-            if os.path.getsize(outputFile) > sizeInMo*1000000 and make_new_file is False:
+            if os.path.getsize(outputFile) > sizeInMo*max_file_size and make_new_file is False:
                 i += 1
                 make_new_file = True
 
