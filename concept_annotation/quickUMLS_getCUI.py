@@ -5,8 +5,10 @@ import dill
 import argparse
 import gc
 
-data_folder = '/home/ubuntu/dl4hl/data'
-umls_folder = '/home/ubuntu/dl4hl/data'
+data_folder = os.path.expanduser('/home/ubuntu/dl4hl/data')
+umls_folder = os.path.expanduser('/home/ubuntu/dl4hl/data')
+
+print('umls_folder: ', umls_folder)
 
 # Global variables
 # QuickUMLS object
