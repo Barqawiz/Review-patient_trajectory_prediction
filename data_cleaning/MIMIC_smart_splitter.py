@@ -4,13 +4,13 @@ import os, sys
 
 def splitDocument(sizeInMo):
     """Split the MIMIC III document for every 50 Mo (about) without cutting a note"""
-    dirchunks = os.path.expanduser("~/dl4hl/data/data/chunkssmall/")
-    if not os.path.exists('data'):
-        os.makedirs('data')
-    if not os.path.exists('data/chunkssmall'):
-        os.makedirs('data/chunkssmall')
-    if not os.path.exists('data/outputchunkssmall'):
-        os.makedirs('data/outputchunkssmall')
+    root = os.path.expanduser("~/dl4hl/data/data/")
+    dirchunks = os.path.join(root, "chunkssmall/")
+
+    if not os.path.exists(root+'chunkssmall'):
+        os.makedirs(root+'chunkssmall')
+    if not os.path.exists(root+'outputchunkssmall'):
+        os.makedirs(root+'outputchunkssmall')
     i = 1
     make_new_file = True
     outputFile = ""
@@ -23,6 +23,7 @@ def splitDocument(sizeInMo):
                 if make_new_file :
                     make_new_file = False
                     outputFile = dirchunks+str(i)+".csv"
+            print('outputFile: ', outputFile)
             with open(outputFile, 'a') as fwrite:
                 fwrite.write(line)
             if os.path.getsize(outputFile) > sizeInMo*1000000 and make_new_file is False:
