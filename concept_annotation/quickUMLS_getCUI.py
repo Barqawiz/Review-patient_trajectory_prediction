@@ -29,6 +29,9 @@ def main_funct(file):
     filename = dirchunks+file
     with open(filename, 'r') as fd:
         print("File", filename, "opened!")
+        # print the file size
+        file_status = os.fstat(fd.fileno())
+        print(f"File size of {filename}: {file_status.st_size} bytes")
         # Preparing outputfile
         outputFile = diroutputchunks+file+".output"
         fw = open(outputFile, 'w')
