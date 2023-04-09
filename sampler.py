@@ -14,7 +14,7 @@ noteevents = pd.read_csv(os.path.join(data_folder, 'NOTEEVENTS.csv'))
 patients = pd.read_csv(os.path.join(data_folder, 'PATIENTS.csv'))
 
 # Sample 50% of unique patients
-sampled_subject_ids = patients['SUBJECT_ID'].sample(frac=0.5).values
+sampled_subject_ids = patients['SUBJECT_ID'].sample(frac=0.35).values
 
 # Filter each table by the sampled patients
 admissions_sampled = admissions[admissions['SUBJECT_ID'].isin(sampled_subject_ids)]
