@@ -19,8 +19,8 @@ TUI_beta = ["T195","T123","T122","T103","T120","T200","T126","T116","T196","T131
 TUI_alpha = ["T020","T190","T049","T019","T047","T050","T033","T037","T048","T191","T046","T184","T038","T069","T068","T034","T070","T067","T043","T201","T045","T041","T044","T032","T040","T042","T039","T116","T195","T123","T122","T103","T120","T104","T200","T196","T126","T131","T125","T129","T130","T197","T114","T109","T121","T192","T127"]
 TUIs = TUI_alpha
 # Input and output path
-dirchunks = os.path.join(data_folder, "data", "chunkssmall")
-diroutputchunks = os.path.join(data_folder, "data", "outputchunkssmall")
+dirchunks = os.path.join(data_folder, "data", "chunkssmall/")
+diroutputchunks = os.path.join(data_folder, "data", "outputchunkssmall/")
 
 
 def main_funct(file):
