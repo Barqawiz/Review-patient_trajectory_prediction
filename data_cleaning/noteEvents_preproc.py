@@ -409,6 +409,7 @@ def main():
         return -1
     # New folder in which we will save the output
     outpath = os.path.expanduser("~/dl4hl/data/out_results/")
+    print('create directory: ', outpath)
     os.mkdir(outpath)
     # outpath = ""
     # Run preprocessing over the input
