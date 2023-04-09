@@ -21,6 +21,8 @@ def splitDocument(sizeInMo):
         for line in fread.readlines():
             count_comma = line.count(',')
             count_quote = line.count('"')
+            print('count_comma: ', count_comma)
+            print('count_quote: ', count_quote)
             if count_comma >= 10 and count_quote >= 1:
                 if make_new_file :
                     make_new_file = False
