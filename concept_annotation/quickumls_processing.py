@@ -3,9 +3,10 @@ import sys
 import re
 import os
 
+model_data = os.path.expanduser('~/dl4hl/data/data/modeldata')
 
 def post_process():
-    tp1 = open("temporator.csv", 'w')
+    tp1 = open(f"{model_data}/temporator.csv", 'w')
     with open(sys.argv[1]) as fread1:
         for line in fread1.readlines():
             # print("l",line)
@@ -13,8 +14,8 @@ def post_process():
             tp1.write(cl)
     tp1.close()
 
-    tp2 = open("temporator2.csv", 'w')
-    with open("temporator.csv") as fread2:
+    tp2 = open(f"{model_data}/temporator2.csv", 'w')
+    with open(f"{model_data}/temporator.csv") as fread2:
         for line in fread2.readlines():
             cl = re.sub(r'(C\d+ *\")', r'\1\n', line)
             cl = re.sub(r'\" \"', r'\" \"\n', cl)
@@ -22,11 +23,11 @@ def post_process():
             cl = re.sub(r' +', r' ', cl)
             tp2.write(cl)
     tp2.close()
-    os.remove("temporator.csv")
+    os.remove(f"{model_data}/temporator.csv")
 
     pattern = re.compile(r'^.*?,.*?,\d+,')
-    finalfile = open("post_processed_output.csv", 'w')
-    with open("temporator2.csv") as fread:
+    finalfile = open(f"{model_data}/post_processed_output.csv", 'w')
+    with open(f"{model_data}/temporator2.csv") as fread:
         for line in fread.readlines():
             # Empty CUI codes, we ignore it
             if line.count("\" \"") > 0 :
@@ -39,7 +40,7 @@ def post_process():
                 continue
             finalfile.write(line)
     finalfile.close()
-    os.remove("temporator2.csv")
+    os.remove(f"{model_data}/temporator2.csv")
 
 
 def main():
