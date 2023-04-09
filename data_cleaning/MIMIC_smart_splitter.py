@@ -14,7 +14,9 @@ def splitDocument(sizeInMo):
     i = 1
     make_new_file = True
     outputFile = ""
-    with open(sys.argv[1]) as fread:
+    output_file_path = sys.argv[1]
+    print('output_file_path: ', output_file_path)
+    with open(output_file_path) as fread:
         fread.readline() # avoid first line
         for line in fread.readlines():
             count_comma = line.count(',')
