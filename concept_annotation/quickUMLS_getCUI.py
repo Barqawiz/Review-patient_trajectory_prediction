@@ -10,7 +10,7 @@ umls_folder = '/home/ubuntu/dl4hl/data'
 
 # Global variables
 # QuickUMLS object
-matcher = QuickUMLS(quickumls_fp=f'{umls_folder}/QuickUMLS', overlapping_criteria='score', threshold=0.88, similarity_name='cosine', window=5)
+matcher = QuickUMLS(quickumls_fp=f'{umls_folder}/QuickUMLS', overlapping_criteria='score', threshold=0.85, similarity_name='cosine', window=5)
 ARGS = None
 # TUI list
 TUI_beta = ["T195","T123","T122","T103","T120","T200","T126","T116","T196","T131","T125","T129","T130","T121","T192","T127","T104","T114","T197","T109","T038","T034","T070","T067","T068","T069","T043","T201","T045","T041","T032","T040","T042","T039","T044","T020","T190","T049","T019","T047","T050","T033","T037","T048","T191","T046","T184","T091","T090","T017","T029","T023","T030","T031","T022","T025","T026","T018","T021","T024","T079","T203","T074","T075","T100","T011","T008","T194","T007","T012","T204","T099","T013","T004","T096","T016","T015","T001","T101","T098","T097","T014","T010","T005","T058","T060","T061"]
