@@ -407,8 +407,7 @@ def main():
         return -1
     # New folder in which we will save the output
     outpath = "~/dl4hl/data/out_results/"
-    # replace os.mkdir(outpath) to include more flexible function
-    os.makedirs(outpath, exist_ok=True)
+    os.mkdir(outpath)
     # outpath = ""
     # Run preprocessing over the input
     anonimization_remover(sys.argv[1], outpath+'out_noanonim.csv')
