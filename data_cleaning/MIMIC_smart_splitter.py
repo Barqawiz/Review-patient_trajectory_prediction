@@ -27,6 +27,8 @@ def splitDocument(sizeInMo):
                 if make_new_file :
                     make_new_file = False
                     outputFile = dirchunks+str(i)+".csv"
+            else:
+                continue
             print('outputFile: ', outputFile)
             with open(outputFile, 'a') as fwrite:
                 fwrite.write(line)
