@@ -16,25 +16,31 @@ patients = pd.read_csv(os.path.join(data_folder, 'PATIENTS.csv'))
 # Filter patients with at least two admissions
 patients_admission_counts = admissions['SUBJECT_ID'].value_counts()
 patients_with_two_admissions = patients_admission_counts[patients_admission_counts >= 2].index
-patients_with_less_than_two_admissions = patients_admission_counts[patients_admission_counts < 2].index
+patients_with_less_admissions = patients_admission_counts[patients_admission_counts < 2].index
+
+print('patients_with_two_admissions: ', len(patients_with_two_admissions))
+print('patients_with_less_admissions: ', len(patients_with_less_admissions))
 
 # Calculate the number of patients to sample
 num_sample = int(0.4 * len(patients))
 print('- the sample size: ', num_sample)
 
+# Calculate the proportion of patients with at least two admissions in the entire dataset
+prop_two_admissions = len(patients_with_two_admissions) / len(patients)
+
 # Calculate the number of patients with two or more admissions and with less than two admissions in the sampled data
-num_sample_two_admissions = int(0.85 * num_sample)
-num_sample_less_than_two_admissions = num_sample - num_sample_two_admissions
+num_sample_two_admissions = int(prop_two_admissions * num_sample)
+num_sample_less_admissions = num_sample - num_sample_two_admissions
 
 # Sample patients with at least two admissions and less than two admissions
 sampled_subject_ids_two_admissions = patients[patients['SUBJECT_ID'].isin(patients_with_two_admissions)]['SUBJECT_ID'].sample(n=num_sample_two_admissions).values
-sampled_subject_ids_less_than_two_admissions = patients[patients['SUBJECT_ID'].isin(patients_with_less_than_two_admissions)]['SUBJECT_ID'].sample(n=num_sample_less_than_two_admissions).values
+sampled_subject_ids_less_admissions = patients[patients['SUBJECT_ID'].isin(patients_with_less_admissions)]['SUBJECT_ID'].sample(n=num_sample_less_admissions).values
 
 print('- number of patients with at least two admissions: ', len(sampled_subject_ids_two_admissions))
-print('- number of patients with less than two admissions: ', len(sampled_subject_ids_less_than_two_admissions))
+print('- number of patients with less than two admissions: ', len(sampled_subject_ids_less_admissions))
 
 # Combine the sampled_subject_ids
-sampled_subject_ids = list(sampled_subject_ids_two_admissions) + list(sampled_subject_ids_less_than_two_admissions)
+sampled_subject_ids = list(sampled_subject_ids_two_admissions) + list(sampled_subject_ids_less_admissions)
 
 # Filter each table by the sampled patients
 admissions_sampled = admissions[admissions['SUBJECT_ID'].isin(sampled_subject_ids)]
