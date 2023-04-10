@@ -19,6 +19,9 @@ def splitDocument(sizeInMo):
     with open(output_file_path) as fread:
         fread.readline() # avoid first line
         for index, line in enumerate(fread.readlines()):
+            # skip empty lines
+            if not line.strip():
+                continue
             count_comma = line.count(',')
             count_quote = line.count('"')
             # print('count_comma: ', count_comma)
@@ -27,8 +30,6 @@ def splitDocument(sizeInMo):
                 if make_new_file :
                     make_new_file = False
                     outputFile = dirchunks+str(i)+".csv"
-            else:
-                continue
             if index % 100:
                 print('outputFile: ', outputFile)
             with open(outputFile, 'a') as fwrite:
