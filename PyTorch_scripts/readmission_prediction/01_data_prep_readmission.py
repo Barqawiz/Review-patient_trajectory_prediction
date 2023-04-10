@@ -103,7 +103,7 @@ def get_CUINotes_from_CSV_file(fileName):
                 if hadm_id == '':
                         inconsistent_hadm_ids += 1
                         continue
-                else: hadm_id = int(hadm_id)
+                else: hadm_id = int(float(hadm_id))
                 #Read the CUIS, take off the quotes
                 CUInote_vector = tokens[10].strip().strip('"')
                 #Take off the 'C' before every code
