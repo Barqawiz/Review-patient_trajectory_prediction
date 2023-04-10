@@ -8,7 +8,7 @@ import argparse
 import math
 import icd9_to_ccs as ccsMapper
 import copy
-
+import os
 global ARGS
 
 
@@ -195,6 +195,7 @@ def parse_arguments():
 	parser.add_argument('--admissions_file', type=str, default='/home/jamilz/LIG/MIMIC III/mimic-iii-clinical-database-1.4/ADMISSIONS.csv')
 	parser.add_argument('--diagnoses_file', type=str, default='/home/jamilz/LIG/MIMIC III/mimic-iii-clinical-database-1.4/DIAGNOSES_ICD.csv')
 	parser.add_argument('--notes_file', type=str, default='output.csv')
+	parser.add_argument('--output_path', type=str, default='')
 	parser.add_argument('--output_file_name', type=str, default='prepared_data')
 	argsTemp = parser.parse_args()
 	return argsTemp
@@ -342,6 +343,7 @@ if __name__ == '__main__':
 
 	# Step 9 : writing all the data
 	print('Writing patients'' notes read from files ' + ARGS.notes_file)
-	pickle.dump(subjectTOorderedHADM_IDS_Map, open(ARGS.output_file_name + '.npz', 'wb'), protocol = 2)
+	output_full_name = ARGS.output_file_name + '.npz'
+	pickle.dump(subjectTOorderedHADM_IDS_Map, open(os.path.join(ARGS.output_path, output_full_name), 'wb'), protocol = 2)
 	print('-Final number of subjects'' notes for training: ' + str(len(subjectTOorderedHADM_IDS_Map)))
 	print('-Final number of admissions for training: ' + str(final_number_of_admissions))
