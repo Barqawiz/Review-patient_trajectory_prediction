@@ -107,9 +107,9 @@ if __name__ == "__main__":
     else:
         TUIs= TUI_beta
         print("TUI list Beta selected")
-    pool_count = os.cpu_count()-10
+    pool_count = os.cpu_count()-14
     # max opened files = 20
-    pool_count = max(pool_count, 20)
+    pool_count = min(pool_count, 20)
     print('number of cpu processing: ', pool_count)
     # pool = Pool(pool_count)
     with Pool(pool_count) as pool:
