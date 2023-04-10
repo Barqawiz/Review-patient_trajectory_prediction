@@ -109,5 +109,6 @@ if __name__ == "__main__":
         print("TUI list Beta selected")
     pool_count = os.cpu_count()-10
     print('number of cpu processing: ', pool_count)
-    pool = Pool(pool_count)
-    pool.map(main_funct, os.listdir(dirchunks))
+    # pool = Pool(pool_count)
+    with Pool(pool_count) as pool:
+        pool.map(main_funct, os.listdir(dirchunks))
