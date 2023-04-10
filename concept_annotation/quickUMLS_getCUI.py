@@ -108,8 +108,8 @@ if __name__ == "__main__":
         TUIs= TUI_beta
         print("TUI list Beta selected")
     pool_count = os.cpu_count()-4
-    if pool_count > 30:
-        pool_count -= 12
+    if pool_count > 26:
+        pool_count = pool_count - 8
     
     print('number of cpu processing: ', pool_count)
     # pool = Pool(pool_count)
