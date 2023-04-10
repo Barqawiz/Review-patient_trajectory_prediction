@@ -23,7 +23,7 @@ def post_process():
             cl = re.sub(r' +', r' ', cl)
             tp2.write(cl)
     tp2.close()
-    os.remove(f"{model_data}/temporator.csv")
+    # os.remove(f"{model_data}/temporator.csv")
 
     pattern = re.compile(r'^.*?,.*?,\d+,')
     finalfile = open(f"{model_data}/post_processed_output.csv", 'w')
@@ -40,7 +40,7 @@ def post_process():
                 continue
             finalfile.write(line)
     finalfile.close()
-    os.remove(f"{model_data}/temporator2.csv")
+    # os.remove(f"{model_data}/temporator2.csv")
 
 
 def main():
