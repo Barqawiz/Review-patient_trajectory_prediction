@@ -3,7 +3,6 @@ import csv, os, sys, time, re
 from multiprocessing import Pool
 import dill
 import argparse
-import gc
 
 data_folder = os.path.expanduser('/home/ubuntu/dl4hl/data')
 umls_folder = os.path.expanduser('/home/ubuntu/dl4hl/data')
@@ -75,7 +74,6 @@ def main_funct(file):
                 if resultline is not "" :
                     fw.write(resultline+'\n')
                 concepts_output = []
-                gc.collect()
             lineNb+=1
             if count_quote >= 1 :
                 # End of clinical note
