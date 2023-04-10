@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import os, sys
 
-max_file_size = 100000
+max_file_size = 1000000
 def splitDocument(sizeInMo):
     """Split the MIMIC III document for every 50 Mo (about) without cutting a note"""
     root = os.path.expanduser("~/dl4hl/data/data/")
