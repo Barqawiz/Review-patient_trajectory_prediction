@@ -8,7 +8,7 @@ import argparse
 import math
 import icd9_to_ccs as ccsMapper
 import copy
-
+import os
 global ARGS
 
 
