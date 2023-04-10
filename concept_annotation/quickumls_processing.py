@@ -25,20 +25,20 @@ def post_process():
     tp2.close()
     # os.remove(f"{model_data}/temporator.csv")
 
-    pattern = re.compile(r'^.*?,.*?,\d+,')
+    pattern = re.compile(r'^\d+,\d+,\d+')
     finalfile = open(f"{model_data}/post_processed_output.csv", 'w')
     with open(f"{model_data}/temporator2.csv") as fread:
         for line in fread.readlines():
-            print('check1')
+            # print('check1')
             # Empty CUI codes, we ignore it
             if line.count("\" \"") > 0 :
                 continue
-            print('check2')
+            # print('check2')
             # Empty line, we ignore it
             if line == " \n" or line == "\n" or line == " ":
                 continue
-            print('check3')
-            print('match output: ', re.match(pattern, line))
+            # print('check3')
+            # print('match output: ', re.match(pattern, line))
             # Make sure that we have an HADM_ID before writing it
             if not re.match(pattern, line):
                 continue
