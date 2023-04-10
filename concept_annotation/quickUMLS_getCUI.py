@@ -110,7 +110,7 @@ if __name__ == "__main__":
     pool_count = os.cpu_count()-4
     if pool_count > 30:
         pool_count -= 12
-    # max opened files = 12
+    # max opened files = 10
     pool_count = min(pool_count, 10)
     print('number of cpu processing: ', pool_count)
     # pool = Pool(pool_count)
