@@ -8,6 +8,7 @@ In this forked project, we've made several improvements to the original code:
 1. **Bug Fixes**: We've fixed various bugs in the existing code to ensure smooth execution.
 2. **Sampling Training Data**: We've added training data sampling code, ensuring a matching rows from all files, allowing faster processing and model training.
 3. **External Data Storage**: We've updated the code to store and read data from external files rather than working directly under the Git repository. This change helps keep the repository clean and organized.
+4. **CPU support**: Generate a version from the model's training that support CPU machines, as the existing code enforced GPU access.
 
 ### Sampled Training Data Path
 The model's sampled training data is generated in the following server path after applying all pre-processing:
