@@ -19,7 +19,8 @@ patients_with_two_admissions = patients_admission_counts[patients_admission_coun
 patients_with_less_than_two_admissions = patients_admission_counts[patients_admission_counts < 2].index
 
 # Calculate the number of patients to sample
-num_sample = int(0.45 * len(patients))
+num_sample = int(0.4 * len(patients))
+print('- the sample size: ', num_sample)
 
 # Calculate the number of patients with two or more admissions and with less than two admissions in the sampled data
 num_sample_two_admissions = int(0.85 * num_sample)
@@ -29,8 +30,8 @@ num_sample_less_than_two_admissions = num_sample - num_sample_two_admissions
 sampled_subject_ids_two_admissions = patients[patients['SUBJECT_ID'].isin(patients_with_two_admissions)]['SUBJECT_ID'].sample(n=num_sample_two_admissions).values
 sampled_subject_ids_less_than_two_admissions = patients[patients['SUBJECT_ID'].isin(patients_with_less_than_two_admissions)]['SUBJECT_ID'].sample(n=num_sample_less_than_two_admissions).values
 
-print('number of patients with at least two admissions: ', len(sampled_subject_ids_two_admissions))
-print('number of patients with less than two admissions: ', len(sampled_subject_ids_less_than_two_admissions))
+print('- number of patients with at least two admissions: ', len(sampled_subject_ids_two_admissions))
+print('- number of patients with less than two admissions: ', len(sampled_subject_ids_less_than_two_admissions))
 
 # Combine the sampled_subject_ids
 sampled_subject_ids = list(sampled_subject_ids_two_admissions) + list(sampled_subject_ids_less_than_two_admissions)
