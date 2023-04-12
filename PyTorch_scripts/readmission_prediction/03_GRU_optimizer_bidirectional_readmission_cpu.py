@@ -299,6 +299,7 @@ def parse_arguments():
     parser.add_argument('--kFold', type=int, default=5, help='K value (int) of K-fold cross-validation.')
     parser.add_argument('--withCCS', help='add CCS feature in input.')
     parser.add_argument("--optimizer", type=str, default="adam", help="Optimizer choice: adam, adagrad, rmsprop, sgd")
+    parser.add_argument("--bidirectional", action="store_true", help="Use bidirectional GRU")
 
     ARGStemp = parser.parse_args()
     return ARGStemp
