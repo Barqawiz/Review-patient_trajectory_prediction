@@ -304,6 +304,7 @@ def parse_arguments():
     parser.add_argument('--withCCS', help='add CCS feature in input.')
     parser.add_argument("--optimizer", type=str, default="adam", help="Optimizer choice: adam, adagrad, rmsprop, sgd")
     parser.add_argument("--bidirectional", action="store_true", help="Use bidirectional GRU")
+    parser.add_argument('--momentum', type=float, default=0.9, help='Momentum for SGD optimizer')
 
     ARGStemp = parser.parse_args()
     return ARGStemp
