@@ -175,12 +175,16 @@ def train():
         log_interval = 2
         criterion = nn.BCEWithLogitsLoss()
         if ARGS.optimizer == "adam":
+            print('adam optimizer')
             optimizer = optim.Adam(model.parameters(), lr=learning_rate)
         elif ARGS.optimizer == "adagrad":
+            print('adagrad optimizer')
             optimizer = Adagrad(model.parameters(), lr=learning_rate)
         elif ARGS.optimizer == "rmsprop":
+            print('rmsprop optimizer')
             optimizer = RMSprop(model.parameters(), lr=learning_rate)
         elif ARGS.optimizer == "sgd":
+            print('sgd optimizer')
             optimizer = SGD(model.parameters(), lr=learning_rate, momentum=ARGS.momentum)
         else:
             raise ValueError("Invalid optimizer choice")
