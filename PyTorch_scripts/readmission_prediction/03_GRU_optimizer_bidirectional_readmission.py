@@ -10,6 +10,7 @@ import torch.utils.data as dt
 from torch.autograd import Variable
 import numpy as np
 from sklearn.metrics import roc_auc_score as roc
+from torch.optim import Adagrad, RMSprop, SGD
 import gc
 
 
