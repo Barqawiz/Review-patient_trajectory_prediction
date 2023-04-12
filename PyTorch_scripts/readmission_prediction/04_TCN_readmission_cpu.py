@@ -187,13 +187,15 @@ def train():
                 
 
                 data, target = data.cpu(), target.cpu()
-                # print('data size(0): ', data.size(0))
-                # print('ARGS.batchSize: ', ARGS.batchSize)
-                # print('target size: ', target.size)
+                print('data size(0): ', data.size(0))
+                print('ARGS.batchSize: ', ARGS.batchSize)
+                print('target size: ', target.size)
 
                 data, target = Variable(data.float()), Variable(target.float())[:, -1, -1].unsqueeze(1)
                 if data.size(0) != ARGS.batchSize:
                     continue
+
+                print("Target distribution:", torch.unique(target, return_counts=True))
                 
                 data = data.view(batchsize, ARGS.inputdim, -1)  # reshape the input data for TCN
                 optimizer.zero_grad()
@@ -201,6 +203,8 @@ def train():
                 loss = criterion(net_out, target)
                 loss.backward()
                 optimizer.step()
+
+                print("Model output:", net_out)
                 if batch_idx % log_interval == 0:
                     print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: '.format(
                             epoch, batch_idx * len(data), len(train_loader.dataset),
