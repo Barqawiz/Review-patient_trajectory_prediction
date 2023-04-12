@@ -11,7 +11,7 @@ from torch.autograd import Variable
 import numpy as np
 from sklearn.metrics import roc_auc_score as roc
 import gc
-from .tcn import TemporalConvNet
+from tcn import TemporalConvNet
 
 
 class TCN_Network(nn.Module):
