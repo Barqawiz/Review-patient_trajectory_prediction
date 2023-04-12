@@ -187,10 +187,11 @@ def train():
                 
 
                 data, target = data.cpu(), target.cpu()
-                print('data size: ', data.size(0))
+                print('data size(0): ', data.size(0))
                 print('ARGS.batchSize: ', ARGS.batchSize)
+                print('target size: ', target.size)
 
-                data, target = Variable(data.float()), Variable(target.float())[:, -1, -1]
+                data, target = Variable(data.float()), Variable(target.float())[:, -1, -1].unsqueeze(1)
                 if data.size(0) != ARGS.batchSize:
                     continue
                 
