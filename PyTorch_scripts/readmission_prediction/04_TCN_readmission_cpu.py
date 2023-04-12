@@ -184,8 +184,13 @@ def train():
         # Training
         for epoch in range(epochs):
             for batch_idx, (data, target) in enumerate(train_loader):
+                
+
                 data, target = data.cpu(), target.cpu()
-                data, target = Variable(data.float()), Variable(target.float())[:, :, -1]
+                print('data size: ', data.size(0))
+                print('ARGS.batchSize: ', ARGS.batchSize)
+
+                data, target = Variable(data.float()), Variable(target.float())[:, -1, -1]
                 if data.size(0) != ARGS.batchSize:
                     continue
                 
