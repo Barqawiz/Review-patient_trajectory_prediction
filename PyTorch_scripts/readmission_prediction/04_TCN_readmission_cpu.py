@@ -19,7 +19,7 @@ class TCN_Network(nn.Module):
         super().__init__()
 
         ARGS.inputdim = ARGS.numberOfInputCUIInts + ARGS.numberOfInputCCSInts if ARGS.withCCS else ARGS.numberOfInputCUIInts
-        self.tcn = TemporalConvNet(input_size=ARGS.inputdim, num_channels=[ARGS.hiddenDimSize]*2, kernel_size=2, dropout=0.5)
+        self.tcn = TemporalConvNet(num_inputs=ARGS.inputdim, num_channels=[ARGS.hiddenDimSize]*2, kernel_size=2, dropout=0.5)
         self.fc = nn.Linear(ARGS.hiddenDimSize, 1)
         self.sigmo = nn.Sigmoid()
 
