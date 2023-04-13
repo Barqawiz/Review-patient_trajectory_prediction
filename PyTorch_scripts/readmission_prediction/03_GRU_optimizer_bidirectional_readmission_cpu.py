@@ -33,10 +33,8 @@ class Network(nn.Module):
     def forward(self, x, hidden):
         # Prop input through GRU
         bs = x.size(0)
-        print("Input shape:", x.shape)
         
         gru_out, hidden = self.gru(x, hidden)
-        print("Hidden shape before GRU:", hidden.shape)
 
         if ARGS.bidirectional:
             gru_out = gru_out.view(bs, -1, 2, self.hidden_size)
@@ -51,7 +49,6 @@ class Network(nn.Module):
         num_directions = 2 if ARGS.bidirectional else 1
         h_0 = torch.randn(self.num_layers * num_directions, ARGS.batchSize, self.hidden_size).cpu()
         hidden = Variable(h_0)
-        print('hidden shape: ', hidden.shape)
         return hidden
         
 
@@ -221,7 +218,6 @@ def train():
         # Training
         for epoch in range(epochs):
             h = model.init_hidden()
-            print("Hidden shape:", h.shape)
             for batch_idx, (data, target) in enumerate(train_loader):
                 data, target = data.cpu(), target.cpu()
                 data, target = Variable(data.float()), Variable(target.float())
@@ -229,7 +225,6 @@ def train():
                     continue
                 # cstate, hstate = h
                 # h = (cstate.detach(), hstate.detach())
-                print("Data shape:", data.shape)
                 
                 h = h.detach()
                 optimizer.zero_grad()
