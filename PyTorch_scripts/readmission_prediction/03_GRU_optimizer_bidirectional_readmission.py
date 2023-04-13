@@ -33,18 +33,20 @@ class Network(nn.Module):
     def forward(self, x, hidden):
         # Prop input through GRU
         bs = x.size(0)
-        print("Input shape:", x.shape)
-        
+        seq_len = x.size(1)
+
         gru_out, hidden = self.gru(x, hidden)
-        print("Hidden shape before GRU:", hidden.shape)
 
         if ARGS.bidirectional:
-            gru_out = gru_out.view(bs, -1, 2, self.hidden_size)
+            gru_out = gru_out.view(bs, seq_len, 2, self.hidden_size)
             gru_out = gru_out.sum(dim=2)  # Sum the forward and backward outputs
         else:
-            gru_out = gru_out.view(bs, -1, self.hidden_size)
+            gru_out = gru_out.view(bs, seq_len, self.hidden_size)
 
+        gru_out = gru_out.reshape(bs * seq_len, -1)  # Reshape the tensor for the fully connected layer
         out = self.fc(gru_out)
+        out = out.view(bs, seq_len, -1)  # Reshape the output back to the original shape
+
         return out, hidden
 
     def init_hidden(self):
