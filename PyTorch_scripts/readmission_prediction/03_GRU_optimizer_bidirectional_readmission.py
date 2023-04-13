@@ -33,14 +33,25 @@ class Network(nn.Module):
     def forward(self, x, hidden):
         # Prop input through GRU
         bs = x.size(0)
+        print("Input shape:", x.shape)
+        
         gru_out, hidden = self.gru(x, hidden)
-        gru_out = gru_out.contiguous().view(bs,-1, self.hidden_size)
+        print("Hidden shape before GRU:", hidden.shape)
+
+        if ARGS.bidirectional:
+            gru_out = gru_out.view(bs, -1, 2, self.hidden_size)
+            gru_out = gru_out.sum(dim=2)  # Sum the forward and backward outputs
+        else:
+            gru_out = gru_out.view(bs, -1, self.hidden_size)
+
         out = self.fc(gru_out)
         return out, hidden
 
     def init_hidden(self):
-        h_0 = torch.randn(self.num_layers, ARGS.batchSize, self.hidden_size).cuda()
+        num_directions = 2 if ARGS.bidirectional else 1
+        h_0 = torch.randn(self.num_layers * num_directions, ARGS.batchSize, self.hidden_size).cpu()
         hidden = Variable(h_0)
+        print('hidden shape: ', hidden.shape)
         return hidden
 
 
