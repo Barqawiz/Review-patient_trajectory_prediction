@@ -36,19 +36,17 @@ class Network(nn.Module):
         seq_len = x.size(1)
 
         gru_out, hidden = self.gru(x, hidden)
-        print('gru_out: ', gru_out.shape)
+        print('gru_out shape', gru_out.shape)
         if ARGS.bidirectional:
-            gru_out = gru_out.transpose(1, 2).contiguous()
-            print('gru_out: ', gru_out.shape)
-            gru_out = gru_out.view(bs, -1, 2 * self.hidden_size)
-            print('gru_out: ', gru_out.shape)
-            gru_out = gru_out.sum(dim=2)  # Sum the forward and backward outputs
-            print('gru_out: ', gru_out.shape)
+            gru_out = gru_out.view(bs, seq_len, 2, self.hidden_size)
+            print('gru_out shape', gru_out.shape)
+            gru_out = torch.cat((gru_out[:, :, 0, :], gru_out[:, :, 1, :]), dim=2)  # Concatenate forward and backward outputs
+            print('gru_out shape', gru_out.shape)
         else:
             gru_out = gru_out.view(bs, seq_len, self.hidden_size)
 
         gru_out = gru_out.reshape(bs * seq_len, -1)  # Reshape the tensor for the fully connected layer
-        print('gru_out: ', gru_out.shape)
+        print('gru_out shape', gru_out.shape)
         out = self.fc(gru_out)
         out = out.view(bs, seq_len, -1)  # Reshape the output back to the original shape
 
