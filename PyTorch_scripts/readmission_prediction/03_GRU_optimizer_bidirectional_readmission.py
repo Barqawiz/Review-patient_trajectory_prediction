@@ -49,7 +49,7 @@ class Network(nn.Module):
 
     def init_hidden(self):
         num_directions = 2 if ARGS.bidirectional else 1
-        h_0 = torch.randn(self.num_layers * num_directions, ARGS.batchSize, self.hidden_size).cpu()
+        h_0 = torch.randn(self.num_layers * num_directions, ARGS.batchSize, self.hidden_size).cuda()
         hidden = Variable(h_0)
         print('hidden shape: ', hidden.shape)
         return hidden
@@ -221,6 +221,7 @@ def train():
             # Training
             for epoch in range(epochs):
                 h = model.init_hidden()
+                print("Hidden shape:", h.shape)
                 for batch_idx, (data, target) in enumerate(train_loader):
                     data, target = data.cuda(), target.cuda()
                     data, target = Variable(data.float()), Variable(target.float())
@@ -228,6 +229,7 @@ def train():
                         continue
                     # cstate, hstate = h
                     # h = (cstate.detach(), hstate.detach())
+                    print("Data shape:", data.shape)
                     h = h.detach()
                     optimizer.zero_grad()
                     net_out, h = model(data, h)
