@@ -39,7 +39,7 @@ class Network(nn.Module):
         return out, hidden
 
     def init_hidden(self):
-        h_0 = torch.randn(self.num_layers, ARGS.batchSize, self.hidden_size).cpu()
+        h_0 = torch.randn(self.num_layers * (2 if ARGS.bidirectional else 1), ARGS.batchSize, self.hidden_size).cpu()
         hidden = Variable(h_0)
         return hidden
 
