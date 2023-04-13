@@ -51,10 +51,7 @@ class Network(nn.Module):
         h_0 = torch.randn(self.num_layers * (2 if ARGS.bidirectional else 1), ARGS.batchSize, self.hidden_size).cpu()
         hidden = Variable(h_0)
         return hidden
-
-    def init_hidden(self):
         
-
 
 class my_dataset(dt.Dataset):
     def __init__(self,data,label):
