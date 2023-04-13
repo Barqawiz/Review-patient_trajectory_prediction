@@ -48,8 +48,10 @@ class Network(nn.Module):
         return out, hidden
 
     def init_hidden(self):
-        h_0 = torch.randn(self.num_layers * (2 if ARGS.bidirectional else 1), ARGS.batchSize, self.hidden_size).cpu()
+        num_directions = 2 if ARGS.bidirectional else 1
+        h_0 = torch.randn(self.num_layers * num_directions, ARGS.batchSize, self.hidden_size).cpu()
         hidden = Variable(h_0)
+        print('hidden shape: ', hidden.shape)
         return hidden
         
 
