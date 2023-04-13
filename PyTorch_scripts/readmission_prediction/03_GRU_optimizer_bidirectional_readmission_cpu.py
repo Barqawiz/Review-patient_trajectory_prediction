@@ -34,7 +34,13 @@ class Network(nn.Module):
         # Prop input through GRU
         bs = x.size(0)
         gru_out, hidden = self.gru(x, hidden)
-        gru_out = gru_out.contiguous().view(bs,-1, self.hidden_size)
+
+        if ARGS.bidirectional:
+            gru_out = gru_out.view(bs, -1, 2, self.hidden_size)
+            gru_out = gru_out.sum(dim=2)  # Sum the forward and backward outputs
+        else:
+            gru_out = gru_out.view(bs, -1, self.hidden_size)
+
         out = self.fc(gru_out)
         return out, hidden
 
