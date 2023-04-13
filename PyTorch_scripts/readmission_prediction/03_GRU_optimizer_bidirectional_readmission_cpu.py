@@ -222,6 +222,7 @@ def train():
         # Training
         for epoch in range(epochs):
             h = model.init_hidden()
+            print("Hidden shape:", h.shape)
             for batch_idx, (data, target) in enumerate(train_loader):
                 data, target = data.cpu(), target.cpu()
                 data, target = Variable(data.float()), Variable(target.float())
@@ -230,7 +231,7 @@ def train():
                 # cstate, hstate = h
                 # h = (cstate.detach(), hstate.detach())
                 print("Data shape:", data.shape)
-                print("Hidden shape:", h.shape)
+                
                 h = h.detach()
                 optimizer.zero_grad()
                 net_out, h = model(data, h)
