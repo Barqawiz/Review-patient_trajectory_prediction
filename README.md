@@ -16,7 +16,7 @@ The model's sampled training data is generated in the following server path afte
 
 ~/dl4hl/data/data/modeldata/post_processed_output.csv
 
-The model input without applying GPT3 processing:
+The model input:
 ~/dl4hl/data/data/modeldata/prepared_data_origin.npz
 
 ### Reviwers
