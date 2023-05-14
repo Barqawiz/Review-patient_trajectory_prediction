@@ -11,13 +11,12 @@ In this forked project, we've made several improvements to the original code:
 4. **CPU support**: Generate a version from the model's training that support CPU machines, as the existing code enforced GPU access. We used the CPU temporarily during the waiting period for AWS to provide GPU access.
 5. **Improve GRU training**: Update the GRU neural network for the admission prediction to support a variation of optimizers and to receive a parameter that activates bi-directional GRU.
 
-### Sampled Training Data Path
-The model's sampled training data is generated in the following server path after applying all pre-processing:
+### Supplement Materials
+##### Data and Results Visualization Notebook
+We have developed a Google Colab notebook to visualize the data distribution and the results [here](https://colab.research.google.com/drive/1zYhN7TIVXrWoQYH8b3TVEL6Ha57gxpG1?usp=sharing). It also provides re-training commands using the sampled data.
 
-~/dl4hl/data/data/modeldata/post_processed_output.csv
-
-The model input:
-~/dl4hl/data/data/modeldata/prepared_data_origin.npz
+##### Project Presentation on Youtube
+To provide overview of final project delivery, we have published a presentation on [youtube](https://www.youtube.com/watch?v=JfFARjGERiI).
 
 ### Reviwers
 Updated by : Ahmad & Edward
